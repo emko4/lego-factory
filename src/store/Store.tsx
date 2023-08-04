@@ -61,27 +61,27 @@ const reducer = (state: State, action: Action): State => {
             };
         default:
             return state;
-    }
-}
+    };
+};
 
 const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const handleSetFactory = (factory: Equipment[]) => {
         dispatch(setFactory(factory));
-    }
+    };
 
     const handleSetSelectedEquipment = (id: number) => {
         dispatch(setSelectedEquipment(id));
-    }
+    };
 
     const handleSetEquipmentState = (id: number, equipmentState: EquipmentState) => {
         dispatch(setEquipmentState(id, equipmentState));
-    }
+    };
 
     const handleSetBrickType = (id: number, brick: Brick) => {
         dispatch(setBrickType(id, brick));
-    }
+    };
 
     return (
         <Provider
@@ -107,7 +107,7 @@ const useStore = () => {
         setSelectedEquipment,
         setEquipmentState,
         setBrickType,
-    }
+    };
 }
 
 const useResetStore = () => {

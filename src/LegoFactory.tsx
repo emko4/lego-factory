@@ -10,11 +10,12 @@ import './LegoFactory.css';
 
 export const LegoFactory = () => {
     const { setFactory } = useResetStore();
+
     const handleOnGenerate = () => {
         const factory = generateFactory();
 
         setFactory(factory);
-    }
+    };
 
     return (
         <div className="lego-factory">
@@ -33,4 +34,4 @@ export const LegoFactory = () => {
             </div>
         </div>
   );
-}
+};

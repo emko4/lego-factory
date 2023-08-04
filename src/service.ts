@@ -2,7 +2,7 @@ import { EquipmentState, Brick } from './types';
 
 export const getEquipmentName = (number: number): string => {
     return `Equipment #${number + 1}`;
-}
+};
 
 export const getEquipmentStateName = (equipmentState: EquipmentState): string => {
     switch (equipmentState) {
@@ -16,8 +16,8 @@ export const getEquipmentStateName = (equipmentState: EquipmentState): string =>
             return 'Winding down';
         default:
             return 'Unknown state';
-    }
-}
+    };
+};
 
 export const getBrickName = (brickType: Brick): string => {
     switch (brickType) {
@@ -31,5 +31,5 @@ export const getBrickName = (brickType: Brick): string => {
             return 'Car tire';
         default:
             return 'Unknown brick type';
-    }
-}
+    };
+};

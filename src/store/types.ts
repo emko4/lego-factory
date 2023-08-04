@@ -16,7 +16,7 @@ export type Action = {
 } | {
     type: 'SET_SELECTED_EQUIPMENT';
     id: number;
-}
+};
 
 export type HistoryRecord = {
     datetime: Date;
@@ -26,18 +26,18 @@ export type HistoryRecord = {
     datetime: Date;
     action: 'SET_BRICK_TYPE';
     data: Brick;
-}
+};
 
 export type Equipment = {
     state: EquipmentState;
     brickType: Brick;
     history: HistoryRecord[];
-}
+};
 
 export type State = {
     selectedEquipment: number;
     equipments: Equipment[];
-}
+};
 
 export type ContextValue = {
     state: State;
@@ -45,4 +45,4 @@ export type ContextValue = {
     setSelectedEquipment: (id: number) => void;
     setEquipmentState: (id: number, equipmentState: EquipmentState) => void;
     setBrickType: (id: number, brick: Brick) => void;
-}
+};
