@@ -1,0 +1,40 @@
+.equipment {
+    width: 160px;
+    height: 110px;
+    margin: 10px 20px;
+    padding: 20px;
+
+    border: 2px solid black;
+}
+
+.equipment .state {
+    display: flex;
+    align-items: center;
+}
+
+.equipment .state .type {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.equipment .state .type.type_STANDING {
+    background-color: #d52525;
+}
+
+.equipment .state .type.type_STARTING_UP {
+    background-color: #efc729;
+}
+
+.equipment .state .type.type_WINDING_DOWN {
+    background-color: #efc729;
+}
+
+.equipment .state .type.type_RUNNING {
+    background-color: #1aa130;
+}
+
+.equipment .brick {
+    margin-top: 20px;
+}
