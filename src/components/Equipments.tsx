@@ -7,11 +7,11 @@ import './Equipments.css';
 
 export const Equipments: FC = () => {
     const { equipments} = useStore();
-    console.log('[DEV]',equipments)
+
     return (
         <div className="equipments">
             {equipments.map((equipment, index) => {
-                return <Equipment key={index} equipment={equipment} />
+                return <Equipment key={index} number={index} equipment={equipment} />
             })}
         </div>
     );

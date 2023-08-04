@@ -24,11 +24,21 @@ export const Provider = StoreContext.Provider;
 const reducer = (state: State, action: Action): State => {
     switch (action.type) {
         case 'SET_EQUIPMENT_STATE':
-            console.log('[DEV]', 'SET_EQUIPMENT_STATE', action.payload)
-            return state;
+            return {
+                ...state,
+                equipments: state.equipments.map((equipment, index) => ({
+                    ...equipment,
+                    state: action.id === index ? action.data : equipment.state,
+                })),
+            };
         case 'SET_BRICK_TYPE':
-            console.log('[DEV]', 'SET_BRICK_TYPE', action.payload)
-            return state
+            return {
+                ...state,
+                equipments: state.equipments.map((equipment, index) => ({
+                    ...equipment,
+                    brickType: action.id === index ? action.data : equipment.brickType,
+                })),
+            };
         default:
             return state;
     }

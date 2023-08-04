@@ -1,6 +1,7 @@
 import React from 'react';
 import { StoreProvider } from './store/Store';
 import { Equipments } from './components/Equipments';
+import { Application } from './components/Application';
 
 import './LegoFactory.css';
 
@@ -12,7 +13,7 @@ export const LegoFactory = () => {
               <div className="equipments-wrapper"><Equipments /></div>
               <div className="history-wrapper"></div>
           </div>
-          <div className="app-view"></div>
+          <div className="app-view"><Application /></div>
         </div>
       </StoreProvider>
   );

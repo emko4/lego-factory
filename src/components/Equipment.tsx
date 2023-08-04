@@ -1,19 +1,21 @@
 import type { FC } from 'react';
 
-import { Equipment as EquipmentType } from '../store/types';
+import type { Equipment as EquipmentType } from '../store/types';
+import { getBrickName, getEquipmentName, getEquipmentStateName } from '../service';
 
 import './Equipment.css';
-import { getBrickName, getEquipmentStateName } from '../service';
 
 interface Props {
+    number: number;
     equipment: EquipmentType;
 }
 
-export const Equipment: FC<Props> = ({ equipment}) => {
+export const Equipment: FC<Props> = ({ number, equipment}) => {
     const { state, brickType } = equipment;
 
     return (
         <div className="equipment">
+            <div className="number">{getEquipmentName(number)}</div>
             <div className="state">
                 <div className={`type type_${state}`} />{getEquipmentStateName(state)}
             </div>

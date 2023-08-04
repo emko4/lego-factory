@@ -4,10 +4,12 @@ type ActionType = 'SET_EQUIPMENT_STATE' | 'SET_BRICK_TYPE';
 
 export type Action = {
     type: 'SET_EQUIPMENT_STATE';
-    payload: EquipmentState;
+    id: number;
+    data: EquipmentState;
 } | {
     type: 'SET_BRICK_TYPE';
-    payload: Brick;
+    id: number;
+    data: Brick;
 }
 
 export type HistoryRecord = {

@@ -1,5 +1,9 @@
 import { EquipmentState, Brick } from './types';
 
+export const getEquipmentName = (number: number): string => {
+    return `Equipment: #${number}`;
+}
+
 export const getEquipmentStateName = (equipmentState: EquipmentState): string => {
     switch (equipmentState) {
         case 'STANDING':

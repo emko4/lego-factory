@@ -7,6 +7,12 @@
     border: 2px solid black;
 }
 
+.equipment .number {
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
 .equipment .state {
     display: flex;
     align-items: center;
