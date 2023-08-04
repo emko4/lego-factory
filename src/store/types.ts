@@ -1,8 +1,11 @@
 import type { EquipmentState, Brick } from '../types';
 
-export type ActionType = 'SET_SELECTED_EQUIPMENT' | 'SET_EQUIPMENT_STATE' | 'SET_BRICK_TYPE';
+export type ActionType = 'SET_FACTORY' | 'SET_SELECTED_EQUIPMENT' | 'SET_EQUIPMENT_STATE' | 'SET_BRICK_TYPE';
 
 export type Action = {
+    type: 'SET_FACTORY',
+    data: Equipment[],
+} | {
     type: 'SET_EQUIPMENT_STATE';
     id: number;
     data: EquipmentState;
@@ -38,6 +41,7 @@ export type State = {
 
 export type ContextValue = {
     state: State;
+    setFactory: (factory: Equipment[]) => void;
     setSelectedEquipment: (id: number) => void;
     setEquipmentState: (id: number, equipmentState: EquipmentState) => void;
     setBrickType: (id: number, brick: Brick) => void;

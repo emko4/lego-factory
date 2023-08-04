@@ -28,7 +28,7 @@ export const getBrickName = (brickType: Brick): string => {
         case 'TILE':
             return 'Tile';
         case 'TIRE':
-            return 'Car tyre';
+            return 'Car tire';
         default:
             return 'Unknown brick type';
     }

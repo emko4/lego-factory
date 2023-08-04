@@ -1,30 +1,33 @@
 import type { FC, PropsWithChildren } from 'react';
 import { createContext, useReducer, useContext } from 'react';
-import type { State, Action, ContextValue } from './types';
+
+import type {State, Action, ContextValue, Equipment} from './types';
 import type { EquipmentState, Brick } from '../types';
-import { setSelectedEquipment, setEquipmentState, setBrickType } from './actions';
+import { setFactory, setSelectedEquipment, setEquipmentState, setBrickType } from './actions';
+import { generateFactory } from "./generator";
 
 const initialState: State = {
     selectedEquipment: 0,
-    equipments: [
-        { state: 'STANDING', brickType: 'BRICK', history: [] },
-        { state: 'STARTING_UP', brickType: 'PLATE', history: [] },
-        { state: 'RUNNING', brickType: 'TILE', history: [] },
-        { state: 'WINDING_DOWN', brickType: 'TIRE', history: [] },
-    ]
+    equipments: generateFactory(),
 };
 
 const StoreContext = createContext<ContextValue>({
     state: initialState,
+    setFactory: () => {},
     setSelectedEquipment: () => {},
     setEquipmentState: () => {},
     setBrickType: () => {},
 });
 
-export const Provider = StoreContext.Provider;
+const Provider = StoreContext.Provider;
 
 const reducer = (state: State, action: Action): State => {
     switch (action.type) {
+        case 'SET_FACTORY':
+            return {
+                selectedEquipment: 0,
+                equipments: action.data,
+            }
         case 'SET_SELECTED_EQUIPMENT':
             return {
                 ...state,
@@ -64,6 +67,10 @@ const reducer = (state: State, action: Action): State => {
 const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
+    const handleSetFactory = (factory: Equipment[]) => {
+        dispatch(setFactory(factory));
+    }
+
     const handleSetSelectedEquipment = (id: number) => {
         dispatch(setSelectedEquipment(id));
     }
@@ -80,6 +87,7 @@ const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
         <Provider
             value={{
                 state,
+                setFactory: handleSetFactory,
                 setSelectedEquipment: handleSetSelectedEquipment,
                 setEquipmentState: handleSetEquipmentState,
                 setBrickType: handleSetBrickType
@@ -102,4 +110,10 @@ const useStore = () => {
     }
 }
 
-export { StoreProvider, useStore };
+const useResetStore = () => {
+   const { setFactory } = useContext(StoreContext);
+
+   return { setFactory };
+}
+
+export { StoreProvider, useStore, useResetStore };

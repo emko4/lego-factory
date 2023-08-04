@@ -39,7 +39,7 @@ const getValueText = (value: EquipmentState | Brick): string => {
         case 'TILE':
             return 'Tile';
         case 'TIRE':
-            return 'Tire';
+            return 'Car tire';
         default:
             return 'Unknown value'
     }

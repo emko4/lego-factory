@@ -1,5 +1,7 @@
 .history {
-    padding: 20px 50px;
+    width: calc(100% - 100px);
+    height: 100%;
+    padding: 0 50px;
 
     overflow: scroll;
 }
@@ -7,6 +9,7 @@
 .history .table {
     display: table;
     width: 100%;
+    margin-bottom: 40px;
 
     border-collapse: collapse;
 }

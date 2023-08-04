@@ -1,7 +1,6 @@
 import type { FC, ChangeEvent } from 'react';
-import { useState } from 'react';
 
-import type{ Brick } from '../types';
+import type { Brick } from '../types';
 import { useStore } from '../store/Store';
 import { getBrickName, getEquipmentName } from '../service';
 import { BRICK_TYPE, STARTING_TIME, STOPPING_TIME } from '../constants';
@@ -10,19 +9,16 @@ import './Application.css';
 
 export const Application: FC = () => {
     const { selectedEquipment, equipments, setSelectedEquipment, setEquipmentState, setBrickType } = useStore();
-    const [selectedBrick, setSelectedBrick] = useState<Brick>(equipments[0].brickType);
 
     const handleOnChangeEquipment = (event: ChangeEvent<HTMLSelectElement>) => {
         const equipmentId = Number.parseInt(event.target.value, 10);
 
         setSelectedEquipment(equipmentId);
-        setSelectedBrick(equipments[equipmentId].brickType);
     }
 
     const handleOnChangeBrickType = (event: ChangeEvent<HTMLSelectElement>) => {
         const brick = event.target.value as Brick;
 
-        setSelectedBrick(brick)
         setBrickType(selectedEquipment, brick);
     }
 
@@ -52,7 +48,7 @@ export const Application: FC = () => {
                     value={selectedEquipment}
                     onChange={handleOnChangeEquipment}
                 >
-                    {equipments.map((equipment, index) => (
+                    {equipments.map((e, index) => (
                         <option key={index} value={index}>{getEquipmentName(index)}</option>
                     ))}
                 </select>
@@ -60,7 +56,7 @@ export const Application: FC = () => {
                 <h3>Change brick type</h3>
                 <select
                     className="selectBrickType"
-                    value={selectedBrick}
+                    value={equipment.brickType}
                     onChange={handleOnChangeBrickType}
                     disabled={equipment.state !== 'STANDING'}
                 >

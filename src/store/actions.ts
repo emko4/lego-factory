@@ -1,5 +1,11 @@
-import type { Action } from './types';
+import type { Action, Equipment } from './types';
 import type { EquipmentState, Brick } from '../types';
+
+
+export const setFactory = (factory: Equipment[]): Action => ({
+    type: 'SET_FACTORY',
+    data: factory,
+})
 
 export const setSelectedEquipment = (id: number): Action => ({
     type: 'SET_SELECTED_EQUIPMENT',
