@@ -1,10 +1,14 @@
 .equipment {
     width: 160px;
     height: 110px;
-    margin: 10px 20px;
+    margin: 10px;
     padding: 20px;
 
     border: 2px solid black;
+}
+
+.equipment.selected {
+    background: rgb(241, 241, 241);
 }
 
 .equipment .number {
@@ -25,19 +29,26 @@
     margin: 0 10px;
 }
 
-.equipment .state .type.type_STANDING {
+.equipment .state.state_STANDING {
+    color: #d52525;
+}
+.equipment .state.state_STANDING .type {
     background-color: #d52525;
 }
 
-.equipment .state .type.type_STARTING_UP {
-    background-color: #efc729;
+.equipment .state.state_STARTING_UP,
+.equipment .state.state_WINDING_DOWN {
+    color: #dab727;
+}
+.equipment .state.state_STARTING_UP .type,
+.equipment .state.state_WINDING_DOWN .type {
+    background-color: #dab727;
 }
 
-.equipment .state .type.type_WINDING_DOWN {
-    background-color: #efc729;
+.equipment .state.state_RUNNING {
+    color: #1aa130;
 }
-
-.equipment .state .type.type_RUNNING {
+.equipment .state.state_RUNNING .type {
     background-color: #1aa130;
 }
 

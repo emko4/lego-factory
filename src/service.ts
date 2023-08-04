@@ -1,7 +1,7 @@
 import { EquipmentState, Brick } from './types';
 
 export const getEquipmentName = (number: number): string => {
-    return `Equipment: #${number}`;
+    return `Equipment #${number + 1}`;
 }
 
 export const getEquipmentStateName = (equipmentState: EquipmentState): string => {

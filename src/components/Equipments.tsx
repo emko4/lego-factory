@@ -6,13 +6,18 @@ import { useStore } from '../store/Store';
 import './Equipments.css';
 
 export const Equipments: FC = () => {
-    const { equipments} = useStore();
+    const { selectedEquipment, equipments} = useStore();
 
     return (
         <div className="equipments">
-            {equipments.map((equipment, index) => {
-                return <Equipment key={index} number={index} equipment={equipment} />
-            })}
+            {equipments.map((equipment, index) => (
+                <Equipment
+                    key={index}
+                    number={index}
+                    equipment={equipment}
+                    selected={index === selectedEquipment}
+                />
+            ))}
         </div>
     );
 };

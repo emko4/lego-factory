@@ -1,0 +1,10 @@
+.record {
+    display: table-row;
+
+    border-bottom: 1px solid black;
+}
+
+.record > * {
+    display: table-cell;
+    padding: 5px 0;
+}

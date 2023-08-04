@@ -8,16 +8,17 @@ import './Equipment.css';
 interface Props {
     number: number;
     equipment: EquipmentType;
+    selected: boolean;
 }
 
-export const Equipment: FC<Props> = ({ number, equipment}) => {
+export const Equipment: FC<Props> = ({ number, equipment, selected}) => {
     const { state, brickType } = equipment;
 
     return (
-        <div className="equipment">
+        <div className={`equipment${selected ? ' selected' : ''}`}>
             <div className="number">{getEquipmentName(number)}</div>
-            <div className="state">
-                <div className={`type type_${state}`} />{getEquipmentStateName(state)}
+            <div className={`state state_${state}`}>
+                <div className="type" />{getEquipmentStateName(state)}
             </div>
             <div className="brick"><b>Brick type:</b> {getBrickName(brickType)}</div>
         </div>

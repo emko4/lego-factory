@@ -2,9 +2,10 @@ import type { FC, PropsWithChildren } from 'react';
 import { createContext, useReducer, useContext } from 'react';
 import type { State, Action, ContextValue } from './types';
 import type { EquipmentState, Brick } from '../types';
-import { setEquipmentState, setBrickType } from './actions';
+import { setSelectedEquipment, setEquipmentState, setBrickType } from './actions';
 
 const initialState: State = {
+    selectedEquipment: 0,
     equipments: [
         { state: 'STANDING', brickType: 'BRICK', history: [] },
         { state: 'STARTING_UP', brickType: 'PLATE', history: [] },
@@ -15,6 +16,7 @@ const initialState: State = {
 
 const StoreContext = createContext<ContextValue>({
     state: initialState,
+    setSelectedEquipment: () => {},
     setEquipmentState: () => {},
     setBrickType: () => {},
 });
@@ -23,12 +25,22 @@ export const Provider = StoreContext.Provider;
 
 const reducer = (state: State, action: Action): State => {
     switch (action.type) {
+        case 'SET_SELECTED_EQUIPMENT':
+            return {
+                ...state,
+                selectedEquipment: action.id,
+            };
         case 'SET_EQUIPMENT_STATE':
             return {
                 ...state,
                 equipments: state.equipments.map((equipment, index) => ({
                     ...equipment,
                     state: action.id === index ? action.data : equipment.state,
+                    history: action.id === index ? [{
+                        datetime: new Date(),
+                        action: action.type,
+                        data: action.data,
+                    }, ...equipment.history] : equipment.history,
                 })),
             };
         case 'SET_BRICK_TYPE':
@@ -37,6 +49,11 @@ const reducer = (state: State, action: Action): State => {
                 equipments: state.equipments.map((equipment, index) => ({
                     ...equipment,
                     brickType: action.id === index ? action.data : equipment.brickType,
+                    history: action.id === index ? [{
+                        datetime: new Date(),
+                        action: action.type,
+                        data: action.data,
+                    }, ...equipment.history] : equipment.history,
                 })),
             };
         default:
@@ -46,6 +63,10 @@ const reducer = (state: State, action: Action): State => {
 
 const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
+
+    const handleSetSelectedEquipment = (id: number) => {
+        dispatch(setSelectedEquipment(id));
+    }
 
     const handleSetEquipmentState = (id: number, equipmentState: EquipmentState) => {
         dispatch(setEquipmentState(id, equipmentState));
@@ -59,6 +80,7 @@ const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
         <Provider
             value={{
                 state,
+                setSelectedEquipment: handleSetSelectedEquipment,
                 setEquipmentState: handleSetEquipmentState,
                 setBrickType: handleSetBrickType
             }}
@@ -69,10 +91,12 @@ const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
 };
 
 const useStore = () => {
-    const { state, setEquipmentState, setBrickType } = useContext(StoreContext);
+    const { state, setSelectedEquipment, setEquipmentState, setBrickType } = useContext(StoreContext);
 
     return {
+        selectedEquipment: state.selectedEquipment,
         equipments: state.equipments || [],
+        setSelectedEquipment,
         setEquipmentState,
         setBrickType,
     }

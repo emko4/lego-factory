@@ -4,13 +4,12 @@ import { useState } from 'react';
 import type{ Brick } from '../types';
 import { useStore } from '../store/Store';
 import { getBrickName, getEquipmentName } from '../service';
-import { BRICK_TYPE } from '../constants';
+import { BRICK_TYPE, STARTING_TIME, STOPPING_TIME } from '../constants';
 
 import './Application.css';
 
 export const Application: FC = () => {
-    const { equipments, setBrickType } = useStore();
-    const [selectedEquipment, setSelectedEquipment] = useState(0);
+    const { selectedEquipment, equipments, setSelectedEquipment, setEquipmentState, setBrickType } = useStore();
     const [selectedBrick, setSelectedBrick] = useState<Brick>(equipments[0].brickType);
 
     const handleOnChangeEquipment = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -26,6 +25,20 @@ export const Application: FC = () => {
         setSelectedBrick(brick)
         setBrickType(selectedEquipment, brick);
     }
+
+    const handleOnStart = () => {
+        setEquipmentState(selectedEquipment, 'STARTING_UP');
+        setTimeout(() => {
+            setEquipmentState(selectedEquipment, 'RUNNING');
+        }, STARTING_TIME);
+    };
+
+    const handleOnStop = () => {
+        setEquipmentState(selectedEquipment, 'WINDING_DOWN');
+        setTimeout(() => {
+            setEquipmentState(selectedEquipment, 'STANDING');
+        }, STOPPING_TIME);
+    };
 
     const equipment = equipments[selectedEquipment];
 
@@ -49,6 +62,7 @@ export const Application: FC = () => {
                     className="selectBrickType"
                     value={selectedBrick}
                     onChange={handleOnChangeBrickType}
+                    disabled={equipment.state !== 'STANDING'}
                 >
                     {BRICK_TYPE.map((brickType, index) => (
                         <option key={index} value={brickType}>{getBrickName(brickType)}</option>
@@ -57,12 +71,14 @@ export const Application: FC = () => {
 
                 <button
                     className="button"
+                    onClick={handleOnStart}
                     disabled={equipment.state !== 'STANDING'}
                 >
                     START
                 </button>
                 <button
                     className="button"
+                    onClick={handleOnStop}
                     disabled={equipment.state !== 'RUNNING'}
                 >
                     STOP
