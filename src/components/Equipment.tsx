@@ -3,6 +3,8 @@ import type { FC } from 'react';
 import type { Equipment as EquipmentType } from '../store/types';
 import { getBrickName, getEquipmentName, getEquipmentStateName } from '../service';
 
+import gear from '../assets/gear.png';
+
 import './Equipment.css';
 
 interface Props {
@@ -21,6 +23,13 @@ export const Equipment: FC<Props> = ({ number, equipment, selected}) => {
                 <div className="type" />{getEquipmentStateName(state)}
             </div>
             <div className="brick"><b>Brick type:</b> {getBrickName(brickType)}</div>
+            {state !== 'STANDING' && (
+                <img
+                    className={`gear${state === 'RUNNING' ? ' production' : ''}`}
+                    src={gear}
+                    alt="Equipment gear"
+                />
+            )}
         </div>
     );
 };
