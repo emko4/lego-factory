@@ -1,0 +1,80 @@
+.equipment {
+    position: relative;
+    width: 160px;
+    height: 110px;
+    margin: 10px;
+    padding: 20px;
+
+    border: 2px solid black;
+}
+
+.equipment.selected {
+    background: rgb(241, 241, 241);
+}
+
+.equipment .number {
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.equipment .state {
+    display: flex;
+    align-items: center;
+}
+
+.equipment .state .type {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.equipment .state.state_STANDING {
+    color: #d52525;
+}
+.equipment .state.state_STANDING .type {
+    background-color: #d52525;
+}
+
+.equipment .state.state_STARTING_UP,
+.equipment .state.state_WINDING_DOWN {
+    color: #dab727;
+}
+.equipment .state.state_STARTING_UP .type,
+.equipment .state.state_WINDING_DOWN .type {
+    background-color: #dab727;
+}
+
+.equipment .state.state_RUNNING {
+    color: #1aa130;
+}
+.equipment .state.state_RUNNING .type {
+    background-color: #1aa130;
+}
+
+.equipment .brick {
+    margin-top: 20px;
+}
+
+.equipment .gear {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+
+    -webkit-animation: spin 8s linear infinite;
+    -moz-animation: spin 8s linear infinite;
+    animation: spin 8s linear infinite;
+}
+
+.equipment .gear.production {
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); transform:rotate(360deg); } }

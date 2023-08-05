@@ -1,0 +1,41 @@
+.lego-factory {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.web-view {
+  width: 50vw;
+  border-right: 2px solid black;
+}
+
+.equipments-wrapper {
+  width: 100%;
+  height: calc(50vh - 2px);
+  border-bottom: 2px solid black;
+}
+
+.history-wrapper {
+  width: 100%;
+  height: calc(50vh - 2px);
+  border-top: 2px solid black;
+}
+
+.app-view {
+  width: 50vw;
+  height: 100vh;
+  border-left: 2px solid black;
+}
+
+.generate {
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+  width: 300px;
+
+  font-size: 30px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+

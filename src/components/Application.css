@@ -1,0 +1,38 @@
+.application {
+    width: 500px;
+    min-height: 700px;
+    margin: 50px auto;
+
+    border: 2px solid black;
+}
+
+.application .title {
+    text-align: center;
+}
+
+.application .form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.application .form .selectEquipment {
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.application .form .selectBrickType {
+    margin-bottom: 40px;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.application .form .button {
+    margin: 10px 0;
+    padding: 10px 20px;
+
+    cursor: pointer;
+}
